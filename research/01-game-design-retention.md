@@ -1,0 +1,267 @@
+# Game Design, Player Attention & Retention — Research Report
+
+**Task ID:** 2-a · Agent: game design & retention research
+**Scope:** How successful games and habit-forming products keep users coming back, and what that implies for a daily memory-training game.
+**Companion report:** `02-memory-techniques.md` (Task 2-b) covers the cognitive-science side (mnemonics, SRS scheduling). This report covers the *retention / motivation / game-design* side. Raw notes in `research/raw/`.
+
+---
+
+## Executive Summary — 10 Key Findings
+
+1. **Retention benchmarks are brutally concrete.** For mobile games: average D1 ≈ 25–30%, D7 ≈ 10–15%, D30 ≈ 3–6%. **Puzzle is the stickiest genre** (D1 31.9%, D7 12.2%, D30 5.4%). Top-tier titles hit 45%+ D1. ([appagent](https://appagent.com/blog/mobile-game-retention-benchmarks), [segwise](https://segwise.ai/blog/mobile-gaming-app-user-retention-strategies))
+2. **Each retention window diagnoses a different failure:** weak D1 = onboarding/expectation problem; weak D7 = habit-loop problem; weak D30 = depth/live-ops/social problem. Fix the lever that matches the interval. ([appagent](https://appagent.com/blog/mobile-game-retention-benchmarks))
+3. **The Hooked loop (Trigger → Action → Variable Reward → Investment) is the canonical retention architecture.** External triggers (notifications) must be gradually replaced by internal triggers (boredom, "I want my streak"); investment makes the product better with use, which makes leaving costly. ([Nir Eyal / Google Play](https://medium.com/googleplaydev/optimize-app-retention-with-the-hooked-model-a0781f8e5d29))
+4. **Habits take ~66 days, not 21.** Lally (2010): median 66 days to automaticity (range 18–254). 2024 meta-analysis: medians 59–66 days, means 106–154. **Missing a single day does not materially harm habit formation** — long inconsistency gaps do. Automaticity grows on an asymptotic curve; weeks 3–6 are the plateau where people quit. ([reset75 summary](https://reset75.com/blog/how-long-to-form-a-habit))
+5. **Wordle's once-a-day scarcity is the single best fit for a daily memory game:** one puzzle, <10 minutes, instant per-guess feedback, spoiler-free share grid that turns performance into social currency (>10,000 #Wordle tweets/hour at peak). Scarcity creates a daily appointment and a shared culture. ([Psychology Today](https://www.psychologytoday.com/ca/blog/the-asymmetric-brain/202201/the-psychology-behind-wordle))
+6. **Duolingo's streak system is the proven benchmark for daily-habit retention:** ~9M users (≈24% of DAU) hold 365+ day streaks; streak freezes, streak-repair, and leagues weaponize loss aversion. Streak-linked push notifications reach CTRs up to 7.4%. ([LinkedIn stat](https://www.linkedin.com/posts/selcukaciner_duolingo-got-9m-users-to-maintain-a-365-activity-7274696076983521280-VUKv), [Pushwoosh](https://www.pushwoosh.com/blog/game-app-push-notifications))
+7. **Endowed progress is one of the best-evidenced tricks available:** a car-wash loyalty card needing 10 stamps *with 2 pre-stamped* hit 34% redemption vs ~19% for a blank 8-stamp card (identical effort). Goal-gradient: effort accelerates as the perceived goal nears — but effort collapses after reward ("post-reward reset"), so chains must roll into the next cycle. ([changingminds](http://changingminds.org/explanations/theories/endowed_progress.htm), [Product Philosophy](https://productphilosophy.com/articles/goal-gradient-progress-mechanics))
+8. **Brain-training games are a retention success story but an efficacy failure:** Lumosity paid a **$2M FTC settlement (2016)** for unsupported brain claims; meta-analysis of 87 studies/145 comparisons (Melby-Lervåg & Hulme) finds **zero far transfer** of working-memory training. Design implication: sell *daily fun, streaks, and measured in-game progress* — never cure-claims. ([APS meta-analysis](https://www.psychologicalscience.org/journals/perspectives/1745691616635612), [Ars Technica coverage](https://arstechnica.com))
+9. **Variable rewards must ride on top of a fair core loop, not replace it.** Variable-ratio reinforcement (Skinner) is the most powerful schedule for sustaining behavior; the strongest designs layer randomness onto *predictable* fixed-interval daily rewards. But ~60% of players quit games that get too hard too fast — fairness and flow beat manipulation long-term. ([Game Developer](https://www.gamedeveloper.com/business/the-science-craft-of-designing-daily-rewards-and-why-ftp-games-need-them), [segwise](https://segwise.ai/blog/mobile-gaming-app-user-retention-strategies))
+10. **Long-term retention needs Self-Determination Theory, not just dopamine:** autonomy + competence + relatedness explain why games feel motivating for months (Przybylski 2010, cited 2,500+). Extrinsic hooks (leaderboards, badges) show **short-lived** effects and can undermine intrinsic motivation if overused (Hanus & Fox via [Cigdem et al. 2024 leaderboard study](https://link.springer.com/article/10.1007/s10639-024-12845-2)). Layer both: SDT for the core, extrinsics as garnish.
+
+---
+
+## 1. Core Gameplay Loops & Compulsion Loops
+
+**Findings.** A **core loop** is the chain of activities in the primary user flow — "what the user is primarily doing over and over again" (fight → loot → upgrade). A **compulsion loop** is the *psychological* wrapper: a habitual, designed chain of activities repeated to gain a neurochemical reward (pleasure / relief), typically: **anticipation → action → reward → anticipation of more**. The two are commonly confused; the useful synthesis is that the core loop must be intrinsically fun, while the compulsion loop supplies the habit-forming frame around it ([Dan'l Webster, Medium](https://medium.com/@DanlWebster/whats-the-difference-between-a-core-loop-and-a-compulsion-loop-f02d20479cc7), [technogurukul](https://technogurukul.com/blogs/the-psychology-behind-a-good-game-loop)).
+
+Anatomy of a strong loop, as described across sources:
+- **Anticipation/trigger** → a cue promises a reward.
+- **Action** → simple, low-friction behavior anticipating the reward (the simpler, the more likely — Eyal).
+- **Reward** → immediate, visible, ideally variable.
+- **Decision/investment** → choice about what to do next; small investment that sets up the next loop.
+
+**Case examples.** Candy Crush: match → cascade → score/stars → next level on a visible map. Clash Royale: 4-hour chest cycle between matches. Duolingo: lesson → XP/gem/streak tick → next lesson's "you have X to review."
+
+**Design implications for our memory game.**
+- The core loop must be a *complete, satisfying 60–90 second unit*: see a challenge → attempt with full attention → immediate per-item feedback (Wordle-style) → result screen with a visible delta (accuracy, time, streak).
+- Wrap it in a session-level loop (today's set → daily result → tomorrow's teaser) and a campaign-level loop (weekly level/league cycle). Three nested loops = session, day, week.
+- End every session on an "open loop" (Zeigarnik, §6): show what's queued for tomorrow ("3 cards due, your recall is at 91%").
+
+## 2. Habit Formation & the Hooked Model
+
+**Findings.** Nir Eyal's Hooked model has four steps: **Trigger** (external: pings; internal: uncomfortable emotional states like boredom), **Action** (the simplest behavior that anticipates reward), **Variable Reward** (Skinner's intermittent reinforcement raised response rates vs. fixed), and **Investment** (user puts something in that makes the product better next time — data, content, reputation). Over repeated cycles, users shift from external to internal triggers — that transition *is* retention ([Nir Eyal / Google Play](https://medium.com/googleplaydev/optimize-app-retention-with-the-hooked-model-a0781f8e5d29), [ui-patterns](https://ui-patterns.com/blog/making-the-hook-model-actionable)). Eyal also distinguishes habit (1–5% of users are true "addicts"; the rest are forming a mundane habit) — important both ethically and for design targeting.
+
+**The science of how long a habit takes:** Lally et al. (2010, UCL): median **66 days** to automaticity, range 18–254 days. 2024 meta-analysis (Singh et al., 20 studies, 2,601 participants): medians 59–66 days, means 106–154 days, range 4–335. Key nuances: missing one day **did not materially affect** habit formation; the curve is asymptotic (fast early gains, plateau at weeks 3–6 = quit zone); **frequency is the strongest single predictor** — daily beats 3×/week even at equal total reps ([reset75](https://reset75.com/blog/how-long-to-form-a-habit)).
+
+**Design implications.**
+- Our product goal is a *daily* habit: frequency is already optimal; the design job is to make day-to-day friction ≈ 0 (auto-resume where you left off, no log-in walls, offline-capable).
+- Assume ~2 months to automaticity → onboarding should carry the user with **external scaffolding (notifications, rewards) for at least 60–90 days**, after which internal triggers + streak identity take over.
+- Design for the weeks-3–6 plateau: schedule fresh mechanics (a new game mode, a league season) to land in that window, and make missed-day recovery effortless (freeze/repair) since one miss isn't fatal.
+
+## 3. Retention Metrics, Benchmarks & Churn Causes
+
+**Findings — the numbers (2025–2026 data):**
+
+| Window | All-genre average | Good | Top tier | Puzzle genre | Notes |
+|---|---|---|---|---|---|
+| D1 | 25–30% (2025 avg 27%) | 35–40% | 45%+ | **31.9%** | first-session quality |
+| D7 | 10–15% | 18–22% | 25%+ | **12.2%** | habit formation |
+| D30 | 3–6% | 8–10% | 12%+ | **5.4%** | depth/live-ops |
+
+Sources: [appagent 2026 benchmarks](https://appagent.com/blog/mobile-game-retention-benchmarks) (working ranges for marketed titles), [segwise](https://segwise.ai/blog/mobile-gaming-app-user-retention-strategies) (genre table; match games: D1 32.65% / D7 13.98% / D30 7.15%; hyper-casual D30 only 1.38%; mid-core: 44–45% / 20–21% / 11–12%). GameAnalytics' pooled median D7 across 11,600 games is just 3.4–3.9% — pooled medians drag down with indie long tail; benchmark against genre, not "the industry." Other numbers: iOS top-quartile D1 31–33% vs Android 25–27%; median daily playtime ≈ 22 min across ≈ 4 sessions (mid-core 6–7 sessions/day); **a 5% retention increase can lift profits 25–95%** (Bain-style figure quoted by segwise); retargeting lifts paying users ~50%, re-engaged users generate 37% more revenue events than new installs; 58% of app users go inactive within 30 days (Localytics via [getgud](https://www.getgud.io/blog/10-proven-strategies-to-boost-player-retention-in-your-game)).
+
+**Diagnostic frame** (appagent): D1 leaks = misleading creatives, slow onboarding, heavy-handed tutorials. D7 leaks = weak progression pacing, no mechanical reason to return, novelty fade. D30 leaks = shallow progression, no content cadence, **missing social hooks**.
+
+**Design implications.**
+- Our realistic north star: **puzzle-genre-or-better** (D1 ≥ 32%, D7 ≥ 13%, D30 ≥ 6%), aiming top-tier (40%+ D1) by nailing first session.
+- Instrument a step-by-step FTUE funnel from day one (see §9); track D1 as the leading indicator, DAU/MAU stickiness ≥ 0.20 as the habit signal ([secondstage](https://secondstage.io/academy/player-lifecycle/lifecycle-metrics)).
+- Plan win-back flows at 7+ days inactive with a deadline-bound come-back bonus — recoverable churn is cheaper than new installs.
+
+## 4. Variable Rewards & Dopamine Psychology
+
+**Findings.** Skinner's operant-conditioning work: intermittent (variable-ratio) reinforcement produces **higher, more persistent response rates** than fixed rewards — and extinction-resistant behavior. Slot machines and loot boxes exploit variable-ratio schedules; fMRI work shows near-misses activate reward circuitry like wins ([geniuscrate](https://www.geniuscrate.com/the-science-of-loot-boxes-psychology-behind-random-rewards) — 404 at read time, retained for citation; [Game Developer](https://www.gamedeveloper.com/business/the-science-craft-of-designing-daily-rewards-and-why-ftp-games-need-them)). Dopamine fires on **prediction error** — the biggest hits come from unexpected rewards, which is why surprise (a rare "perfect day," a new personal best, a mystery card) re-engages better than guaranteed payouts. Social-casino designers note daily spins are now so ubiquitous they've lost differentiation power — randomness alone is table stakes, not a moat ([Game Developer](https://www.gamedeveloper.com/business/the-science-craft-of-designing-daily-rewards-and-why-ftp-games-need-them)).
+
+**Design implications.**
+- Three reward layers, each with its own variability: (a) *predictable* per-session XP/streak tick (trust), (b) *variable* session bonus (mystery envelope, rare "flawless run" flourish), (c) *rare variable* weekly drop (new cosmetic deck, badge). Variable on top of fixed — never random instead of fair.
+- Use prediction-error consciously: occasional surprise upgrades ("today's review doubled XP — lucky card!") rather than uniform grants.
+- Ethical guardrail: no paid randomness for under-18 audiences; randomness stays cosmetic/XP, never gating core memory content (see Lumosity/loot-box reputation risk, §13).
+
+## 5. Appointment Mechanics & Daily Rituals
+
+**Findings.** **Appointment mechanics** create a scheduled reason to return: daily login calendars, daily quests, Clash Royale's 4-hour chests, Pokémon GO's timed research/events, Wordle's single daily puzzle. Psychology: fixed-interval schedules + anticipation; daily rewards convert login into an automatic habit (cue → action → reward) ([PM Playground](https://pmplayground.substack.com/p/the-psychology-of-daily-rewards-why), [Game Developer](https://www.gamedeveloper.com/business/the-science-craft-of-designing-daily-rewards-and-why-ftp-games-need-them)). Grosso's craft rules for F2P daily rewards: add **opt-in push reminders**, add **randomness** (claiming becomes a mini-game), **increase rewards over time** for consistency. Critical failure mode documented in the same source: hard-reset streak calendars ("back to square one") are read as punishment and push players to quit — modern games use freeze/repair instead.
+
+**Wordle case study** ([Psychology Today](https://www.psychologytoday.com/ca/blog/the-asymmetric-brain/202201/the-psychology-behind-wordle)): one puzzle per day, <10 min, instant feedback per guess, spoiler-free share squares → >10,000 posts/hour on Twitter at peak. The once-a-day cap (1) makes it a shared cultural event (everyone gets the same word), (2) prevents binging so demand is never satiated, (3) makes streaks meaningful. NYT doubled down by adding cross-game streaks and custom puzzles; its games vertical became a major subscription pillar.
+
+**Design implications.**
+- The daily set should be **the** unit (one "Daily Recall" of ~3–5 min), finished with a shareable result card (emoji-grid style — spoiler-free by construction).
+- Queue *tomorrow's* content visibly today ("4 new cards mature overnight") — anticipation is the appointment hook.
+- Weekly rhythm: rotating special (Saturday memory-mode, Sunday marathon) on top of the constant daily ritual.
+- Never hard-reset daily chains; use freezes (see §6).
+
+## 6. Loss Aversion, Streaks & the Zeigarnik Effect
+
+**Findings.** Loss aversion: losses hurt ~2× as much as equivalent gains feel good. **Streaks convert future gains into present possessions** — a 50-day streak is an asset that can be *lost*, so showing up becomes defense, not effort ([duolingo-streaks-psychology](https://medium.com/design-bootcamp/duolingo-and-the-psychology-of-streaks-why-you-cant-stop-learning-e926b190acaa), [dev.to](https://dev.to/bhumica08/what-duolingo-taught-me-about-retention-and-how-id-build-it-into-my-own-apps-438j)). Duolingo's stack: streak counter + **Streak Freeze** (spend gems to protect), **streak repair** (buy back a lost day), weekend "AM/PM" double windows, and a streak widget — ~9M users hold 365+ day streaks (≈24% of DAU). The Zeigarnik effect (Zeigarnik 1927, after Lewin's waiter observation): **interrupted/unfinished tasks stay cognitively accessible**; tension persists until completion. Masicampo & Baumeister: unfinished goals intrude on other work — and *making a plan* releases the tension ([Psychology Today](https://www.psychologytoday.com/au/blog/natural-order/202209/how-the-little-known-zeigarnik-effect-impacts-everyone-daily)).
+
+**Design implications.**
+- Streak = count of consecutive days completing ≥1 meaningful review; visible everywhere (app icon badge, home screen, widget).
+- Grace mechanics: earn freezes (e.g., one freeze per 5 perfect days), paid repair with soft currency — protect the asset, never reset to zero.
+- Zeigarnik levers: always end a session with a visible "in progress" state (deck 82% mastered, "7 cards in your forgetting zone"); send the *plan* in notifications ("3 cards due tomorrow at 9pm") — planning is what releases intrusive tension and converts it into a return visit.
+- Counter-risk (documented in Duolingo UX critiques): streak anxiety drives some users to quit. Mitigate with freeze-first design and "streak repair" > punishment framing.
+
+## 7. Self-Determination Theory (SDT)
+
+**Findings.** SDT (Deci & Ryan): motivation is sustained when three needs are met — **autonomy** (meaningful choice), **competence** (growing mastery with visible proof), **relatedness** (connection to others). In games, basic-needs satisfaction predicts engagement and long-term play (Peng et al. 2012 experimental study; Przybylski et al. 2010 motivational model, cited 2,500+; [Wikipedia/SDT](https://en.wikipedia.org/wiki/Self-determination_theory), [Peng et al. PDF](https://selfdeterminationtheory.org/wp-content/uploads/2014/06/2012_PengLinPfeifferWinn_MP3.pdf)). Contrast with shallow dopamine traps: variable-reward-heavy designs generate short spikes but burn out; needs-satisfying designs carry months-long engagement. Leaderboard/gamification literature warns that extrinsic elements produce **short-lived** engagement and can erode intrinsic motivation over time (Hanus & Fox; documented in the [Cigdem et al. 2024](https://link.springer.com/article/10.1007/s10639-024-12845-2) leaderboard quasi-experiment).
+
+**Design implications.**
+- *Autonomy:* let players pick daily deck themes (names? capitals? own content?), choose between "calm review" and "challenge" modes, and import their own material — self-relevance compounds retention (the memory-science report should cover self-reference effect).
+- *Competence:* show mastery curves, "cards matured" counts, personal bests — progress must be *felt* in numbers that only go up meaningfully.
+- *Relatedness:* async social (see §10) rather than forced real-time competition.
+
+## 8. Flow Theory & Difficulty Tuning
+
+**Findings.** Csikszentmihalyi's flow: complete, energized focus when **challenge ≈ skill**, with clear goals and immediate feedback; too much challenge → anxiety, too little → boredom ([Jenova Chen's flow-in-games](http://jenovachen.com/flowingames/flowtheory.htm)). Games operationalize this with **Dynamic Difficulty Adjustment (DDA)** — Candy Crush adjusts level difficulty based on player performance to prevent stagnation. The stakes are high: **~60% of players quit games that get too hard too quickly** ([segwise](https://segwise.ai/blog/mobile-gaming-app-user-retention-strategies)). King's analytics famously found players churning at **level 65** and redesigned the level — difficulty walls are measurable and fixable ([Information Age](https://www.information-age.com/how-hadoop-and-memory-analytics-help-make-candy-crush-worlds-most-addictive-game-31897)).
+
+**Design implications.**
+- Adaptive difficulty is natural for a memory game: tune card count, display time, interference (similar items), and delay lengths to keep success rate near a target band (e.g., 70–85% correct — hard enough to feel earned, easy enough to stay in flow).
+- Detect struggle signals (timeouts, rage-quit timing) and respond with a hint/shorter set rather than a wall; log "stuck points" like King's level-65 analytics and patch content weekly.
+- Session shape: start each day with an easy warm-up (competence prime), peak in the middle, end on a win (recency positivity).
+
+## 9. Onboarding & Time-to-Fun (FTUE)
+
+**Findings.** The largest churn block is on install day: **core gameplay within 60 seconds**, the "aha" moment within **90 seconds**, first-run tours ≤ 2 steps, tutorials skippable, account/permission prompts deferred until after first play. Measure FTUE as a **step-by-step funnel** (drop-off per step, tutorial completion rate, session-1 → session-2 conversion as the leading indicator of D1). Early achievement + a context-matched Day-1 push is worth **5–10 points of D1**; personalized onboarding (routing veterans past tutorials) has been reported to lift D30 by up to **52%**; optimized onboarding overall can lift retention by up to 50% ([Playio FTUE guide](https://blog.playio.co/mobile-game-onboarding-retention)). Duolingo's onboarding gives a win in ~5 seconds: answer one word, get XP, animation, done ([dev.to](https://dev.to/bhumica08/what-duolingo-taught-me-about-retention-and-how-id-build-it-into-my-own-apps-438j)). Localytics (via getgud): 58% of users inactive within 30 days — the war is won in session one ([getgud](https://www.getgud.io/blog/10-proven-strategies-to-boost-player-retention-in-your-game)).
+
+**Design implications.**
+- First session: no sign-up, no tutorial screens — drop into a 20-second, unmissable first challenge with immediate success, celebrate it visually, then show the streak starting at 1.
+- Teach mechanics *in the challenge* (Wordle model: one line of rules, learn by doing); interactive, never wall-of-text.
+- Set the notification opt-in prompt **after** the first win, framed as "remind me when today's set is ready" (opt-in timing matters; Slotomania-style pre-permission screens reached 97% opt-in per [Pushwoosh](https://www.pushwoosh.com/blog/game-app-push-notifications)).
+- Instrument every onboarding step; treat step-3 drop-off like King treats a difficulty wall.
+
+## 10. Social Mechanics
+
+**Findings.** Leaderboards: quasi-experimental evidence (159 students, 8 weeks, control group — Cigdem et al. 2024) shows leaderboards improve achievement and engagement **but benefits may not sustain and can demotivate low performers**; multiple studies caution extrinsic competition shortens attention spans and can reduce intrinsic motivation ([Springer](https://link.springer.com/article/10.1007/s10639-024-12845-2), [WDSI proceedings](http://wdsinet.org/Annual_Meetings/2023_Proceedings/papers/033..pdf): leaderboards produce "both improved and detrimental outcomes"). Duolingo's **leagues** (weekly 30-person promotion/relegation) are the mainstream-proof version: small groups, weekly reset, so everyone can win sometimes. Wordle's share grid is social *comparison without confrontation* — downward comparison (I beat people) feels good; upward comparison (someone got it in 2) fuels "I can do better" ([Psychology Today](https://www.psychologytoday.com/ca/blog/the-asymmetric-brain/202201/the-psychology-behind-wordle)). Cooperative accountability (friends' streak counts, sending lives in Candy Crush) adds relatedness + mild social pressure; missing social hooks is a named D30-leak ([appagent](https://appagent.com/blog/mobile-game-retention-benchmarks)).
+
+**Design implications.**
+- Ship in this order: (1) spoiler-free share card (cheapest, Wordle-proven), (2) friend leaderboards on weekly *improvement* (not absolute skill) to protect low performers, (3) Duolingo-style opt-in leagues with promotion/relegation, (4) cooperative goals ("class clears 10,000 cards this week").
+- Prefer small, reset groups over global all-time leaderboards — global boards freeze top ranks and demotivate everyone else.
+
+## 11. Investment Mechanics (Collection, Progress, Endowed Progress)
+
+**Findings.** **Endowed progress effect** (Nunes & Drèze 2006, car-wash field experiment): a 10-stamp card with 2 pre-stamped stamps achieved **34% completion vs ~19%** for a blank 8-stamp card — identical required effort, 1.8× the completion. **Goal-gradient hypothesis** (Hull 1932; Kivetz, Urminsky & Zheng 2006, real café loyalty data): effort *accelerates* as perceived distance to goal shrinks (buy-10-get-1 cards showed shortened inter-purchase intervals within customers; "illusionary goal progress" — the 12-slot card with 2 pre-stamped beat the plain 10-slot). Crucially, Kivetz et al. also documented the **post-reward reset**: effort collapses after redemption, and collapses hardest for the customers who accelerated most ([Product Philosophy deep-dive](https://productphilosophy.com/articles/goal-gradient-progress-mechanics), [changingminds](http://changingminds.org/explanations/theories/endowed_progress.htm)). Investment in the Hooked sense: Duolingo XP, decks, widgets; Candy Crush's map, unlocked boosters, lives sent by friends — all sunk costs that raise exit price. The Candy Crush booster shop even shows *unowned* boosters faded out — visualizing the incomplete collection ([hashbyte](https://hashbytestudio.com/the-silent-features-of-candy-crush-saga-to-be-the-most-addictive-game)).
+
+**Design implications.**
+- Start every progress bar pre-loaded: new users begin "Deck Mastery" at 8% (starter pack counts as progress), weekly challenges start with day-1 credit.
+- Give progress metrics per deck ("Brain Park: 12/20 cards mastered") so the goal-gradient pulls mid-week sessions.
+- Design **chains, not endpoints**: when a collection completes, immediately auto-open the next cycle with a small head start (defeat the post-reward reset).
+- Investment sinks: custom decks, imported content, cosmetic card backs, streaks — all increase switching cost and are the D30+ moat.
+
+## 12. Attention Economy & Session Design (Notifications)
+
+**Findings.** Frequency ≠ depth: daily 2-minute sessions and weekly 40-minute sessions look identical in D7 but build completely different habits — **frequency is the habit variable** ([appagent](https://appagent.com/blog/mobile-game-retention-benchmarks)). Casual games target **2–5 minute sessions** ([getgud](https://www.getgud.io/blog/10-proven-strategies-to-boost-player-retention-in-your-game)). Push-notification evidence: justDice cut early churn **26%** with a well-timed "finish onboarding + claim bonus" push; Beach Bum grew DAU/MAU **3×** with personalized daily-reward notifications; streak-linked pushes hit **CTR up to 7.4%**; opt-in is the bottleneck (especially iOS) — ask *after* meaningful engagement, use pre-permission screens; never interrupt active play; keep copy short; don't repeat unopened pushes ([Pushwoosh 170k-notification study](https://www.pushwoosh.com/blog/game-app-push-notifications), [Braze best practices](https://www.braze.com/resources/articles/push-notifications-best-practices)). The first 3–5 minutes are make-or-break for notification-anchored onboarding flows.
+
+**Design implications.**
+- Pick-up-and-play: game loads in <2s straight into a resume state; every session length from 60s to 6min must have a graceful stopping point.
+- Notification ladder: (1) Day-1 "your set is ready + welcome bonus", (2) streak-protection alert at the user's chosen time, (3) "3 cards due tomorrow" plan-message the night before, (4) win-back at 7 days idle with 48-hour comeback bonus. Cap at 1–2/day, always actionable, never generic "come back!"
+- Let users pick their reminder time during onboarding (autonomy + internal-trigger seeding).
+
+## 13. Brain-Training Games: The Cautionary Tale
+
+**Findings.** Lumosity grew to 45M+ users on claims its games improved memory/attention ("scientifically proven"), then paid a **$2M FTC settlement in 2016** for deceptive advertising — the FTC said the company "simply did not have the science to back up its ads" ([Ars Technica](https://arstechnica.com), [Medical Daily](https://www.medicaldaily.com), [Psychiatric Times](https://www.psychiatrictimes.com)). The science: Melby-Lervåg & Hulme's meta-analysis (87 publications, 145 experimental comparisons) — training improves the trained task and near-transfer WM measures, but **no convincing far transfer** to intelligence, reading, or arithmetic; no evidential value once publication bias is corrected ([APS Perspectives](https://www.psychologicalscience.org/journals/perspectives/1745691616635612), [Guye & von Bastian 2017](https://eprints.bournemouth.ac.uk/29788/1/Guye_vonBastian.2017.WM_training_in_older_adults.pdf) for older adults). A 2017 study found neither Lumosity users nor controls improved beyond getting better at the games themselves ([WKMS](https://www.wkms.org)). Yet these products *retained* users for years — Lumosity/Peak built daily-score rituals, BPI-style "brain indexes," and workout calendars. What failed was the *promise*, not the engagement design.
+
+**Design implications for us.**
+- Position as **a game that trains memory skills you can see in the game** (harder decks, faster recall, more digits/cards) — in-game skill gains are real and measurable. Never claim IQ/cognitive-health cures; avoid Lumosity's exact legal/reputational trap.
+- The "daily brain workout" *framing* (calendar, score, workout streak) is proven for retention — keep the ritual, drop the medical claims. Optional: cite honest research (retrieval practice and spaced repetition DO improve learning of the trained material — that's near transfer to real studied content, which is a defensible, truthful claim).
+- Publish our own skill metrics (digits remembered, names recalled) so progress is felt — competence is the honest dopamine.
+
+## 14. Spaced Repetition as a Game Mechanic
+
+**Findings.** SRS apps show the tension directly: Anki is the gold-standard scheduler but notoriously unmotivating (interface minimal, no streaks, no rewards); Memrise gamified SRS with points, streaks, mnemonics and grew huge on it; Duolingo built its own internal SRS and layered streaks/leagues on top — the combination (sound pedagogy + habit design) is what won the market ([memrise forum](https://memriseforum.mylittlewordland.com/community.memrise.com/t/anki-vs-memrise-in-which-platform-can-i-learn-words-the-fastest/141574658.html?page=2), [mindtiles](https://mindtiles.ai/blog/best-spaced-repetition-apps-in-2026-learn-faster-remember-longer), [getsticky](https://www.getsticky.ai/learn/best-spaced-repetition-apps)). Practitioner consensus: "gamification without SRS is doomed" — the review *queue* itself is the appointment mechanic: tomorrow's due cards are a pre-committed, self-created obligation (perfect Zeigarnik + endowed-progress substrate). The Duolingo classroom study (52 students, 10 weeks): motivation up sharply (85% reported more enjoyment), proficiency gains moderate (+12% vs +6% control) — engagement is the differentiator, learning follows ([WorldTLE study](https://www.dpublication.com/abstract-of-worldtle/385-wor)).
+
+**Design implications.**
+- Make the due-count the hero metric: "17 cards mature today" as the daily quest, with a completion ring. The SRS queue is our Wordle-appointment *and* our investment mechanic (the queue grows more valuable as the player adds cards).
+- Visualize the forgetting curve per card ("strength 82%, next review in 4 days") — turning invisible algorithm state into a game resource players can watch improve.
+- Cap daily new cards (avoid overwhelm ≈ difficulty-wall churn); ensure the daily due-set is completable in 3–8 minutes.
+
+## 15. Retention Case Studies (Quick Reference)
+
+- **Candy Crush**: free easy first 10–15 levels (fast competence wins), 5-lives + 30-min refill (appointment pressure), boosters, map progression, glowing hints so players never stay stuck, friend-gated episodes (social), King's data team literally redesigned level 65 after churn analytics flagged it ([hashbyte](https://hashbytestudio.com/the-silent-features-of-candy-crush-saga-to-be-the-most-addictive-game), [Information Age](https://www.information-age.com/how-hadoop-and-memory-analytics-help-make-candy-crush-worlds-most-addictive-game-31897)).
+- **Duolingo**: streaks + freezes + repair, leagues, XP/gems, widget, streak-linked notifications (7.4% CTR), 5-second first win, ~9M users with 365+ streaks; internal SRS; risk documented: streak anxiety ([dev.to](https://dev.to/bhumica08/what-duolingo-taught-me-about-retention-and-how-id-build-it-into-my-own-apps-438j), [design-bootcamp](https://medium.com/design-bootcamp/duolingo-and-the-psychology-of-streaks-why-you-cant-stop-learning-e926b190acaa), [LinkedIn stat](https://www.linkedin.com/posts/selcukaciner_duolingo-got-9m-users-to-maintain-a-365-activity-7274696076983521280-VUKv)).
+- **Wordle/NYT Games**: one-puzzle scarcity, instant feedback, spoiler-free share, same-word-for-everyone culture, cross-game streaks, custom puzzles ([Psychology Today](https://www.psychologytoday.com/ca/blog/the-asymmetric-brain/202201/the-psychology-behind-wordle), [engadget on custom Wordles](https://www.engadget.com/gaming/the-new-york-times-is-letting-you-create-your-own-wordle-puzzles-185429249.html)).
+- **Chess.com puzzles / Pokémon GO / Clash Royale**: daily puzzle with streak, timed events/raid hours (appointment), 4-hour chest cycles; all confirm the "scheduled surprise" pattern.
+
+---
+
+# The Retention Playbook
+
+Prioritized for a **daily memory-training game** (evidence strength × fit). Evidence: ★★★ = strong/field-experimental, ★★ = strong observational/industry data, ★ = practitioner consensus.
+
+| # | Mechanic | Evidence | Rationale |
+|---|---|---|---|
+| 1 | **Single daily "set" as the core unit** (Wordle model: one shared, short, complete-able session) | ★★★ | Scarcity creates the appointment; <10 min fits habit frequency; everyone plays the same set → culture + shareability. |
+| 2 | **Streak counter with freeze + repair** (never reset-to-zero) | ★★★ | Loss aversion is the strongest daily-return driver (Duolingo: 24% of DAU with 365+ streaks); hard resets demonstrably churn players. |
+| 3 | **60-second first win, zero-friction onboarding** (no tutorial walls, no sign-up before first win) | ★★★ | FTUE decides D1; core gameplay <60s / aha <90s adds 5–10pp D1 per industry data; D1 is the multiplier on the whole curve. |
+| 4 | **Due-card queue as daily quest** ("17 cards mature today" + completion ring) | ★★★ | SRS queue = pre-committed obligation (Zeigarnik) + appointment; it's the honest, learning-positive version of daily quests. |
+| 5 | **Spoiler-free share card** after each daily set | ★★★ | Wordle's viral + social-comparison loop; free acquisition AND retention; downward/upward comparison both motivate. |
+| 6 | **Adaptive difficulty band (~70–85% success)** | ★★★ | 60% of players quit too-hard games; flow requires challenge≈skill; memory games can tune this continuously and honestly. |
+| 7 | **Streak/home-screen widget + reminder at user-chosen time** | ★★★ | External trigger → internal trigger transition is THE habit mechanism; Duolingo's widget is its most-copied retention artifact. |
+| 8 | **Pre-loaded progress bars / endowed head starts** (start at 8%, weekly challenge starts with day-1 credit) | ★★★ | Nunes & Drèze: 34% vs 19% completion from 2 free stamps; trivial to implement, big effect on week-1 continuation. |
+| 9 | **Variable layer on fixed rewards** (guaranteed XP + surprise bonus/rare flourish) | ★★ | Skinner's variable-ratio is the most robust behavior-schedule finding; randomness must garnish, not replace, fairness. |
+| 10 | **Weekly leagues / small-group leaderboards on improvement, opt-in** | ★★ | Duolingo leagues work because groups are small and reset; Cigdem 2024 shows leaderboards help but need careful design to not demotivate low performers. |
+| 11 | **Collection & mastery metrics that only grow** (cards matured, decks completed, personal bests) | ★★ | Competence (SDT) + endowed/collection investment; D30 moat; every number should be a sunk cost. |
+| 12 | **Open loops at session end** (tomorrow's teaser, in-progress mastery %) | ★★ | Zeigarnik: unfinished tasks stay mentally active and pull the return visit; zero-cost to implement. |
+| 13 | **Notification ladder** (D1 welcome+bonus → streak-protection at chosen hour → night-before plan message → 7-day win-back with 48h bonus) | ★★ | justDice −26% early churn; Beach Bum 3× DAU; plan-framed messages exploit Masicampo & Baumeister's "planning releases tension." |
+| 14 | **Rolling chains instead of endpoints** (auto-open next collection cycle with head start) | ★★ | Kivetz's post-reward reset: effort collapses after redemption; chains keep the gradient alive. |
+| 15 | **Import-your-own-content mode** (own vocab, names, facts) | ★★ | Autonomy + self-reference effect (memory science) + investment moat; also the ethical high ground: the game trains *their* material, not abstract puzzles. |
+| 16 | **Warm-up → peak → win session shape** | ★★ | Competence priming + recency positivity; costs nothing; reduces perceived difficulty at the quit-prone start. |
+| 17 | **"Stuck point" analytics + weekly content patches** (King's level-65 practice) | ★★ | Difficulty walls are measurable; weekly cadence is also a D30 live-ops leak fix. |
+| 18 | **Streak milestones with identity framing** ("You're a 30-day Memory Athlete") | ★★ | Identity habits persist past motivation; unlocks badge/cosmetic at each milestone = investment. |
+| 19 | **Cooperative weekly goals** (friends contribute to a shared target) | ★ | Relatedness (SDT); accountability effects smaller but durable; complements rather than replaces competition. |
+| 20 | **Missed-day insurance by default** (first freeze free, earn more) | ★ | Protects the 66-day habit runway during weeks 3–6 plateau; one miss doesn't break habit formation — but quit-spirals after a hard reset do. |
+| 21 | **Daily-set difficulty arcs across the week** (easy Monday, epic Saturday) | ★ | Appointment variety; rhythm gives the calendar texture worth remembering (and returning for). |
+| 22 | **Post-session stats digest** (accuracy, reaction time, streak, "vs last week") | ★ | Instant feedback (flow precondition) + visible mastery growth; cheap competence signal. |
+
+**Sequencing note for the build:** ship #1–#5 (the daily loop skeleton) in v1; #6–#9 in v1.5; social (#10, #19) and advanced loops (#14, #17) once DAU makes them meaningful. Retention research says: the daily loop + streak + FTUE is 80% of the outcome; everything else compounds it.
+
+---
+
+## Sources
+
+**Benchmarks & metrics**
+- [AppAgent — Mobile Game Retention Benchmarks](https://appagent.com/blog/mobile-game-retention-benchmarks) (2026 working ranges, diagnostics, platform/genre data)
+- [Segwise — Mobile Game Retention Benchmarks 2026](https://segwise.ai/blog/mobile-gaming-app-user-retention-strategies) (genre table incl. puzzle 31.85/12.18/5.35)
+- [Second Stage — Player Lifecycle Metrics](https://secondstage.io/academy/player-lifecycle/lifecycle-metrics) (live-service benchmarks, DAU/MAU stickiness)
+
+**Habits & the Hooked model**
+- [Nir Eyal on Google Play blog — Optimize App Retention with the Hooked Model](https://medium.com/googleplaydev/optimize-app-retention-with-the-hooked-model-a0781f8e5d29)
+- [UI Patterns — Making the Hook Model actionable](https://ui-patterns.com/blog/making-the-hook-model-actionable)
+- [Reset75 — How Long to Form a Habit (Lally 2010; Singh et al. 2024 meta-analysis)](https://reset75.com/blog/how-long-to-form-a-habit)
+
+**Loops, rewards, appointment mechanics**
+- [Dan'l Webster — core loop vs compulsion loop](https://medium.com/@DanlWebster/whats-the-difference-between-a-core-loop-and-a-compulsion-loop-f02d20479cc7)
+- [Game Developer (Grosso) — The Science & Craft of Designing Daily Rewards](https://www.gamedeveloper.com/business/the-science-craft-of-designing-daily-rewards-and-why-ftp-games-need-them)
+- [PM Playground — The Psychology of Daily Rewards](https://pmplayground.substack.com/p/the-psychology-of-daily-rewards-why)
+
+**Wordle / social**
+- [Psychology Today — The Psychology Behind Wordle](https://www.psychologytoday.com/ca/blog/the-asymmetric-brain/202201/the-psychology-behind-wordle)
+- [Cigdem et al. 2024 — Leaderboard gamification study (Springer)](https://link.springer.com/article/10.1007/s10639-024-12845-2)
+
+**Loss aversion, streaks, Zeigarnik, progress**
+- [Medium/Bootcamp — Duolingo and the psychology of streaks](https://medium.com/design-bootcamp/duolingo-and-the-psychology-of-streaks-why-you-cant-stop-learning-e926b190acaa)
+- [dev.to — What Duolingo Taught Me About Retention](https://dev.to/bhumica08/what-duolingo-taught-me-about-retention-and-how-id-build-it-into-my-own-apps-438j)
+- [LinkedIn — Duolingo 9M users with 365+ day streaks (~24% of DAU)](https://www.linkedin.com/posts/selcukaciner_duolingo-got-9m-users-to-maintain-a-365-activity-7274696076983521280-VUKv)
+- [Psychology Today — Zeigarnik Effect](https://www.psychologytoday.com/au/blog/natural-order/202209/how-the-little-known-zeigarnik-effect-impacts-everyone-daily)
+- [ChangingMinds — Endowed Progress Effect (Nunes & Drèze car-wash numbers)](http://changingminds.org/explanations/theories/endowed_progress.htm)
+- [Product Philosophy — Goal Gradient, Endowed Advancement, Post-Reward Reset (Kivetz et al. 2006)](https://productphilosophy.com/articles/goal-gradient-progress-mechanics)
+
+**Motivation theory**
+- [Wikipedia — Self-Determination Theory](https://en.wikipedia.org/wiki/Self-determination_theory)
+- [Peng, Lin, Pfeiffer & Winn 2012 — SDT-guided game study (PDF)](https://selfdeterminationtheory.org/wp-content/uploads/2014/06/2012_PengLinPfeifferWinn_MP3.pdf)
+- [Jenova Chen — Flow in Games / Flow Theory](http://jenovachen.com/flowingames/flowtheory.htm)
+
+**Brain training & SRS**
+- [APS — Melby-Lervåg & Hulme: WM training does not improve far transfer](https://www.psychologicalscience.org/journals/perspectives/1745691616635612)
+- [Guye & von Bastian 2017 — WM training in older adults (PDF)](https://eprints.bournemouth.ac.uk/29788/1/Guye_vonBastian.2017.WM_training_in_older_adults.pdf)
+- Ars Technica / Medical Daily / Psychiatric Times coverage of the 2016 Lumosity–FTC $2M settlement (host-level links in raw notes)
+- [WorldTLE — Duolingo gamification classroom study (52 students, 10 weeks)](https://www.dpublication.com/abstract-of-worldtle/385-wor)
+- [Mindtiles — Best Spaced Repetition Apps 2026](https://mindtiles.ai/blog/best-spaced-repetition-apps-in-2026-learn-faster-remember-longer)
+
+**Notifications & onboarding**
+- [Pushwoosh — Game push notifications (170k-notification study; justDice −26% churn, Beach Bum 3× DAU, 7.4% CTR)](https://www.pushwoosh.com/blog/game-app-push-notifications)
+- [Braze — Push Notification Best Practices](https://www.braze.com/resources/articles/push-notifications-best-practices)
+- [Playio — Onboarding Decides Your D1 (FTUE metrics)](https://blog.playio.co/mobile-game-onboarding-retention)
+- [Getgud — 10 Proven Strategies to Boost Player Retention](https://www.getgud.io/blog/10-proven-strategies-to-boost-player-retention-in-your-game)
+
+**Case studies**
+- [Information Age — King's analytics & the Candy Crush level-65 fix](https://www.information-age.com/how-hadoop-and-memory-analytics-help-make-candy-crush-worlds-most-addictive-game-31897)
+- [HashByte Studio — Candy Crush silent features (lives, map, boosters, social gates)](https://hashbytestudio.com/the-silent-features-of-candy-crush-saga-to-be-the-most-addictive-game)
+- [Engadget — NYT custom Wordles](https://www.engadget.com/gaming/the-new-york-times-is-letting-you-create-your-own-wordle-puzzles-185429249.html)

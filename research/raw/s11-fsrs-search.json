@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://forums.ankiweb.net/t/how-to-use-the-next-generation-spaced-repetition-algorithm-fsrs-on-anki/25415/180",
+    "name": "How to use the next-generation spaced repetition algorithm",
+    "snippet": "Dec 16, 2022 — The latest tutorial can be found here: fsrs4anki/docs/tutorial.md. How to use the next-generation spaced repetition algorithm FSRS on Anki ?  ...",
+    "host_name": "forums.ankiweb.net",
+    "rank": 0,
+    "date": "Dec 16, 2022",
+    "favicon": ""
+  },
+  {
+    "url": "https://forums.ankiweb.net/t/how-to-use-the-next-generation-spaced-repetition-algorithm-fsrs-on-anki/25415?page=13",
+    "name": "How to use the next-generation spaced repetition algorithm",
+    "snippet": "Dec 16, 2022 — The latest tutorial can be found here: fsrs4anki/docs/tutorial.md. How to use the next-generation spaced repetition algorithm FSRS on Anki ? ...",
+    "host_name": "forums.ankiweb.net",
+    "rank": 1,
+    "date": "Dec 16, 2022",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/Anki/comments/1aigs9l/fsrs_spacing_intervals_are_ridiculously_long",
+    "name": "FSRS spacing intervals are ridiculously long : r/Anki",
+    "snippet": "The consensus is to trust the algorithm . If the intervals are too long for your liking, you can increase your desired retention which will ... Read more",
+    "host_name": "www.reddit.com",
+    "rank": 2,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://gist.github.com/riceissa/1ead1b9881ffbb48793565ce69d7dbdd",
+    "name": "my current understanding of Anki's spacing algorithm",
+    "snippet": "Anki now supports FSRS instead of the SM2 algorithm ・ intervals will be generated at 80% of their normal size ・ make Anki present cards more or less ...",
+    "host_name": "gist.github.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://forums.ankiweb.net/t/how-to-use-the-next-generation-spaced-repetition-algorithm-fsrs-on-anki/25415/207",
+    "name": "How to use the next-generation spaced repetition algorithm",
+    "snippet": "Dec 16, 2022 — How to use the next-generation spaced repetition algorithm FSRS on Anki ? ... And graduating interval only works in the default algorithm . Read more",
+    "host_name": "forums.ankiweb.net",
+    "rank": 4,
+    "date": "Dec 16, 2022",
+    "favicon": ""
+  },
+  {
+    "url": "https://forums.ankiweb.net/t/how-to-use-the-next-generation-spaced-repetition-algorithm-fsrs-on-anki/25415/321",
+    "name": "How to use the next-generation spaced repetition algorithm",
+    "snippet": "Dec 16, 2022 — The latest tutorial can be found here: How to use the next-generation spaced repetition algorithm FSRS on Anki ? It could multiply the numbers ...",
+    "host_name": "forums.ankiweb.net",
+    "rank": 5,
+    "date": "Dec 16, 2022",
+    "favicon": ""
+  },
+  {
+    "url": "https://forums.ankiweb.net/t/how-to-use-the-next-generation-spaced-repetition-algorithm-fsrs-on-anki/25415/378",
+    "name": "How to use the next-generation spaced repetition algorithm",
+    "snippet": "Dec 16, 2022 — 1) Go to deck options and enable FSRS . Higher retention leads to shorter intervals and more reviews per day.** 80-95% is reasonable, 90% should ...",
+    "host_name": "forums.ankiweb.net",
+    "rank": 6,
+    "date": "Dec 16, 2022",
+    "favicon": ""
+  },
+  {
+    "url": "https://forums.ankiweb.net/t/how-to-use-the-next-generation-spaced-repetition-algorithm-fsrs-on-anki/25415/306",
+    "name": "How to use the next-generation spaced repetition algorithm",
+    "snippet": "Dec 16, 2022 — The latest tutorial can be found here: How to use the next-generation spaced repetition algorithm FSRS on Anki ? FSRS to more accurately & ...",
+    "host_name": "forums.ankiweb.net",
+    "rank": 7,
+    "date": "Dec 16, 2022",
+    "favicon": ""
+  }
+]

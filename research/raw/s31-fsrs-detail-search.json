@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://www.reddit.com/r/Anki/comments/1p4zc7c/fsrs_not_working_for_me",
+    "name": "FSRS not working for me : r/Anki",
+    "snippet": "My DR is 90 percent, I dont really understand the retention ... Stability , Card Difficulty , Card Retrievability , Answer Buttons, and Retention . Read more",
+    "host_name": "www.reddit.com",
+    "rank": 0,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/open-spaced-repetition/fsrs4anki/issues/694",
+    "name": "[Feature Request] Separate retention rates for “learning”",
+    "snippet": "Sep 28, 2024 — suddenly optimal retention rate rockets up to 90 %. I believe this is clear evidence of \"mature\" items being scheduled out too far because new ...",
+    "host_name": "github.com",
+    "rank": 1,
+    "date": "Sep 28, 2024",
+    "favicon": ""
+  },
+  {
+    "url": "https://forums.ankiweb.net/t/fsrs-not-achieving-desired-retention-after-2-months/60504/11",
+    "name": "FSRS not achieving desired retention after 2 months",
+    "snippet": "May 8, 2025 — My desired retention is set to 92%. You should select the “ Stability ”, “Retreivability”, “ Difficulty ” columns before taking a SS. ing to reach  ...",
+    "host_name": "forums.ankiweb.net",
+    "rank": 2,
+    "date": "May 8, 2025",
+    "favicon": ""
+  },
+  {
+    "url": "https://forums.ankiweb.net/t/trying-to-reach-retention-90/54352/12",
+    "name": "Trying to reach retention 90 % - #12 by Anon_0000 - FSRS",
+    "snippet": "Jan 10, 2025 — I am trying to reach retention 90 %. I gradually set the desired retention from 90 % to 93 % retention not only for learning cards, young cards ...",
+    "host_name": "forums.ankiweb.net",
+    "rank": 3,
+    "date": "Jan 10, 2025",
+    "favicon": ""
+  },
+  {
+    "url": "https://forums.ankiweb.net/t/clarify-what-optimal-retention-means/42803/38",
+    "name": "Clarify what optimal retention means - #38 by dae - FSRS",
+    "snippet": "Mar 25, 2024 — “Compute optimal retention ” has been reworked. Previously, it maximized the sum of all retrievability values. Difficulty not updated correctly",
+    "host_name": "forums.ankiweb.net",
+    "rank": 4,
+    "date": "Mar 25, 2024",
+    "favicon": ""
+  },
+  {
+    "url": "https://forums.ankiweb.net/t/trying-to-reach-retention-90/54352/7",
+    "name": "Trying to reach retention 90 % - #7 by Danika_Dakika - FSRS",
+    "snippet": "Jan 10, 2025 — I am trying to reach retention 90 %. I gradually set the desired retention from 90 % to 93 % Decks always tend to have larger difficulty levels?",
+    "host_name": "forums.ankiweb.net",
+    "rank": 5,
+    "date": "Jan 10, 2025",
+    "favicon": ""
+  },
+  {
+    "url": "https://forums.ankiweb.net/t/fsrs-desired-retention/53895",
+    "name": "FSRS Desired retention - Help",
+    "snippet": "Jan 3, 2025 — Question: I have FSRS desired retention set at 90 %. My goal is to achieve about 90 % retention on MATURE cards. Does the FSRS retention goal ...",
+    "host_name": "forums.ankiweb.net",
+    "rank": 6,
+    "date": "Jan 3, 2025",
+    "favicon": ""
+  },
+  {
+    "url": "https://forums.ankiweb.net/t/fixing-low-optimal-retention-bias/68506/4",
+    "name": "Fixing Low Optimal Retention Bias - #4 by sound - FSRS",
+    "snippet": "Jan 29, 2026 — I ran a few experiments looking at optimal retention in FSRS . Simulations tend to prefer low target retentions, which is counter intuitive.",
+    "host_name": "forums.ankiweb.net",
+    "rank": 7,
+    "date": "Jan 29, 2026",
+    "favicon": ""
+  }
+]

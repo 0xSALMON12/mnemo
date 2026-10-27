@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// MNEMO — a daily memory game.
+// The player's memory IS the save file: every met person carries SRS state.
+
+model Player {
+  id             String    @id @default(cuid())
+  createdAt      DateTime  @default(now())
+  xp             Int       @default(0)
+  streak         Int       @default(0)
+  bestStreak     Int       @default(0)
+  freezes        Int       @default(0)
+  perfectPoints  Int       @default(0) // 5 perfect days -> +1 freeze (cap 2)
+  lastPlayedDate String? // YYYY-MM-DD (UTC)
+  sessions       Session[]
+  meetings       Meeting[]
+}
+
+// SRS state for one person the player has met.
+model Meeting {
+  id         String  @id @default(cuid())
+  playerId   String
+  personKey  String // key into the static roster (src/lib/game/data.ts)
+  step       Int     @default(0) // index into the stability ladder
+  reps       Int     @default(1)
+  lapses     Int     @default(0)
+  strength   Float   @default(0.15) // 0..1 display bar
+  dueDate    String // YYYY-MM-DD (UTC)
+  lastResult String? // knew | close | missed
+  lastSeen   String // YYYY-MM-DD
+  player     Player  @relation(fields: [playerId], references: [id])
+
+  @@unique([playerId, personKey])
+}
+
+// One completed daily session.
+model Session {
+  id        String  @id @default(cuid())
+  playerId  String
+  date      String // YYYY-MM-DD (UTC), unique per player
+  crowdJson String // JSON: personKeys of the day's new crowd
+  dueJson   String // JSON: personKeys of due friends tested
+  bitesJson String // JSON: per-person results [{personKey, guess, status, isDue}]
+  correct   Int
+  total     Int
+  perfect   Boolean
+  xpGained  Int
+  player    Player  @relation(fields: [playerId], references: [id])
+
+  @@unique([playerId, date])
+}

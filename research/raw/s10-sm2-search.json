@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://supermemo.guru/wiki/History_of_SuperMemo_algorithm",
+    "name": "History of SuperMemo algorithm",
+    "snippet": "Mar 3, 2026 — 2024 - Algorithm SM -19 is an updated version of the spaced repetition algorithm introduced in SuperMemo 19. The new algorithm improved the ... Read more",
+    "host_name": "supermemo.guru",
+    "rank": 0,
+    "date": "Mar 3, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/Anki/comments/dmf295/inverse_spaced_repetition_does_it_make_any_sense",
+    "name": "Inverse spaced repetition. Does it make any sense? : r/Anki",
+    "snippet": "The intervals published in Pimsleur's paper were: 5 seconds, 25 seconds, 2 ... SM - 2 the spaced repetition algorithm used in supermemo and anki . Read more",
+    "host_name": "www.reddit.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://masterhowtolearn.wordpress.com/2018/12/01/hypothetical-situations-should-i-use-anki-supermemo-or-both",
+    "name": "Hypothetical Situations: Should I Use Anki, SuperMemo or Both?",
+    "snippet": "Dec 1, 2018 — Two of the most prominent features are a superior algorithm and Incremental Reading. Anki will not have the algorithm SuperMemo . Anki uses a ...",
+    "host_name": "masterhowtolearn.wordpress.com",
+    "rank": 2,
+    "date": "Dec 1, 2018",
+    "favicon": ""
+  },
+  {
+    "url": "https://dev.to/experilearning/from-spaced-repetition-systems-to-open-recommender-systems-25ab",
+    "name": "From Spaced Repetition Systems to Open Recommender",
+    "snippet": "Dec 31, 2023 — Spaced repetition systems use algorithms which calculate the optimal review times and fewest repetitions required to keep flashcards in your ... Read more",
+    "host_name": "dev.to",
+    "rank": 3,
+    "date": "Dec 31, 2023",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.momomori-eki.net/2020/11/16/battle-of-the-spaced-repetition-heavyweights-anki-vs-supermemo",
+    "name": "Anki vs. SuperMemo - momomori-eki.net",
+    "snippet": "Nov 16, 2020 — In Anki , my average interval was 1.2 months, and longest interval was 2.4 months. In SuperMemo , my average interval was 2.2 months and the ... Read more",
+    "host_name": "www.momomori-eki.net",
+    "rank": 4,
+    "date": "Nov 16, 2020",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.freshcardsapp.com/srs/simulator",
+    "name": "Allen's Spaced Repetition Schedule Simulator",
+    "snippet": "This is the famous SM - 2 algorithm from SuperMemo . repetition algorithms work. Schedules for SM - 2 . This is a good way to see how quickly intervals grow. to e ...",
+    "host_name": "www.freshcardsapp.com",
+    "rank": 5,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.quora.com/How-much-better-are-SuperMemos-newer-algorithms-compared-to-the-old-SuperMemo-algorithm-used-in-Anki",
+    "name": "How much better are SuperMemo's newer algorithms",
+    "snippet": "How much better are SuperMemo's newer algorithms compared to the old SuperMemo algorithm used in Anki?",
+    "host_name": "www.quora.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://masterhowtolearn.wordpress.com/2018/10/30/the-significance-of-incremental-reading-in-supermemo-part-ii",
+    "name": "The Significance of Incremental Reading in SuperMemo: Part II",
+    "snippet": "Oct 30, 2018 — Incremental Reading is essentially “spaced repetition-ing” your reading , just like any SRS that would “spaced repetition” your review of ... Read more",
+    "host_name": "masterhowtolearn.wordpress.com",
+    "rank": 7,
+    "date": "Oct 30, 2018",
+    "favicon": ""
+  }
+]

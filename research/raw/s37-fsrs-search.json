@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://www.remnote.com/blog/spaced-repetition-algorithms",
+    "name": "Spaced Repetition Algorithms: FSRS vs SM-2 vs SM-18",
+    "snippet": "Oct 17, 2026 — SM-2: There's no separate stability value. Both algorithms update a card's stability after every review based on its current stability, current ...",
+    "host_name": "www.remnote.com",
+    "rank": 0,
+    "date": "Oct 17, 2026",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.reddit.com/r/Anki/comments/15mab3r/fsrs_explained_part_1_what_it_is_and_how_it_works",
+    "name": "FSRS explained, part 1: What it is and how it works : r/Anki",
+    "snippet": "FSRS uses a model of memory called DSR - Difficulty, Stability and Probability of Recall, or Retention, or Retrievability if you are Piotr ...",
+    "host_name": "www.reddit.com",
+    "rank": 1,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://borretti.me/article/implementing-fsrs-in-100-lines",
+    "name": "Implementing FSRS in 100 Lines",
+    "snippet": "Jan 10, 2025 — The idea behind FSRS scheduling is that review should happen when predicted retrievability hits desired retention. If desired retention is 0.9 ...",
+    "host_name": "borretti.me",
+    "rank": 2,
+    "date": "Jan 10, 2025",
+    "favicon": ""
+  },
+  {
+    "url": "https://www.taalhammer.com/how-fsrs-works",
+    "name": "How FSRS Works: The Spaced Repetition Algorithm Explained",
+    "snippet": "After every review FSRS updates difficulty and stability. Three effects shape how much stability grows after a successful review: the easier the card, the more ...",
+    "host_name": "www.taalhammer.com",
+    "rank": 3,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://expertium.github.io/Algorithm.html",
+    "name": "A technical explanation of FSRS - Expertium's Blog | Spaced repetition stuff",
+    "snippet": "When desired retention is 90%, the interval is equal to stability. R refers to retrievability at the time of the review. memory stability cannot decrease if ...",
+    "host_name": "expertium.github.io",
+    "rank": 4,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://domenic.me/fsrs",
+    "name": "Spaced Repetition Systems Have Gotten Way Better",
+    "snippet": "May 18, 2025 — FSRS calls itself a “three-component” model because it uses machine learning to fit curves for three main functions: Difficulty, a per-card ...",
+    "host_name": "domenic.me",
+    "rank": 5,
+    "date": "May 18, 2025",
+    "favicon": ""
+  },
+  {
+    "url": "https://github.com/open-spaced-repetition/awesome-fsrs/wiki/ABC-of-FSRS",
+    "name": "ABC of FSRS · open-spaced-repetition/awesome-fsrs Wiki",
+    "snippet": "In FSRS, it affects how fast stability (and hence intervals) grows after each review. With FSRS, users have to do 20–30% fewer reviews than with SM-2 algorithm ...",
+    "host_name": "github.com",
+    "rank": 6,
+    "date": "",
+    "favicon": ""
+  },
+  {
+    "url": "https://faqs.ankiweb.net/what-spaced-repetition-algorithm.html?highlight=SuperMemo",
+    "name": "What spaced repetition algorithm does Anki use?",
+    "snippet": "FSRS aims to learn your memory patterns and schedule reviews more efficiently than SM-2. FSRS is based on the \"Three Component Model of Memory\". The model ...",
+    "host_name": "faqs.ankiweb.net",
+    "rank": 7,
+    "date": "",
+    "favicon": ""
+  }
+]
