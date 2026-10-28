@@ -211,3 +211,20 @@ Stage Summary:
 - Custom mode shipped as economy-safe Practice Lounge (3-12 faces, 4 pools, off-the-record scoring)
 - 6 QoL improvements + 1 bug fixed; matcher hardened (hyphens, surnames)
 - Daily ritual remains the only rewarded path — design check documented in GAME_CONCEPT.md
+
+---
+Task ID: 13
+Agent: main (Z.ai Code) with agent-browser
+Task: Post-context-loss re-verification of Task 12 (Practice Lounge + QoL) + GitHub push
+
+Work Log:
+- Discovered Task 12 was fully implemented before session cutoff (worklog + files + GAME_CONCEPT v1.1 all present); summary had understated it
+- Verified all artifacts: PracticeSetup.tsx + shell wiring + zip rebuilt AFTER practice mode (18:04 > 17:49) + zip contains PracticeSetup
+- Confirmed GitHub push (0xSALMON12/mnemo) is current: pushed zip sha 6de19b84faad == local; repo tree has PracticeSetup.tsx
+- Cleaned repo on push: untracked db/custom.db (+ /db gitignore) and .env (no secrets inside, best practice); 3 commits on main
+- tsc: src/ clean (only unrelated skills/ folder error); eslint clean; dev.log all 200s
+- Live browser E2E re-run of practice lounge: setup dialog (pools 104/104/0/0, size slider) → meet ×6 (no coaching) → recall with "Mind blank — show them" reveal (name + sound-alike + "Filed back into memory…") + typed wrong guesses → practice score ("+0 practice pts", "Off the record", streak-safe card, result rows) → "Practice again" re-deal → "Back to the café" → hub intact, NO welcome re-pop (Task 12 bug fix confirmed live)
+- DB integrity re-confirmed: after 2 full practice rounds player is xp 0 / streak 0 / metCount 0 / alreadyPlayed false; zero sessions & meetings written
+
+Stage Summary:
+- Task 12 verified complete and live; repo current on GitHub; MNEMO v1.1 (daily + practice lounge) is done
